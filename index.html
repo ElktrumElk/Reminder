@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reminder</title>
+
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./add.css">
+    <link rel="stylesheet" href="./subGoals.css">
+</head>
+
+<body>
+    <div id="mainapp" class="app">
+        <header class="header">
+
+            <div class="header_sec_cnt">
+                <div class="lo"></div>
+                <h1>Reminder</h1>
+            </div>
+
+            <nav class="header_sec_cnt">
+                <a class="sec" href="#reminders">Reminder</a>
+                <a class="sec" href="#quotes">Quotes</a>
+            </nav>
+
+            <div class="header_sec_cnt">
+                <div id="add" class="add">+</div>
+            </div>
+
+        </header>
+
+        <!--Main Section-->
+        <main class="app_main">
+
+            <section class="quick_access">
+
+                <h2 class="title">Reminders</h2>
+
+                <div class="quick_access_btn_sec">
+                    <button class="quick_access_btn">All</button>
+                    <button class="quick_access_btn">On set</button>
+                    <button class="quick_access_btn">Complete</button>
+                </div>
+            </section>
+
+
+            <section id="grid_layout" class="grid_layout">
+
+                <div id="card" class="cards">
+                    <div class="remind_topic_cnt">
+
+                        <div class="on_set"></div>
+                        <h3 id="r_title">Today's Goal</h3>
+
+                    </div>
+
+                    <div class="des">
+                        <p id="desc2s">
+                            Try to gain some knoweldge today, by reasearch, study, and practice
+
+                        </p>
+                    </div>
+
+                    <div class="btn_cnt">
+                        <button id="sB" class="sbtn">Sub Goal</button>
+                        <button class="btn">Complete</button>
+                    </div>
+                </div>
+
+            </section>
+        </main>
+        <footer>
+
+        </footer>
+    </div>
+
+
+    <!--The add section-->
+    <div id="addFrame" class="frame">
+        <div class="cnt">
+            <h2>Set your goals add get a reminder</h2>
+
+            <div class="sec_cnts">
+                <h3>Title</h3>
+                <input id="agtitle" class="set_topic" placeholder="Set title...">
+            </div>
+
+            <div class="sec_cnts">
+                <h3>Description</h3>
+                <textarea id="agdes" class="desc" placeholder="Description of goals" maxlength="200"></textarea>
+            </div>
+
+            </textarea>
+            <button id="add_sub_g_btn" class="add_sub_goal">+ Add sub goals</button>
+
+            <div id="sub_goals_cnt_p" class="sec_cnts2">
+
+                <h3>Sub goals</h3>
+
+                <ol id="sub_goals_cnt_pp" class="sub_goals_cnt"></ol>
+
+            </div>
+        </div>
+
+        <div class="reminder_cnt">
+            <h3> Reminder Time:</h3>
+            <input id="r_time" type="time" class="r_time">
+        </div>
+
+        <div class="con_btn_cnt">
+            <button id="cancel" class="con_btn">Cancel</button>
+            <button id="done" class="con_btn">Done</button>
+        </div>
+    </div>
+
+    <!---------------------------->
+    <div id="subframe" class="subframe">
+        <button id="goBack" class="back">Back</button>
+        <div id="listcont" class="list_cnt">
+
+    
+
+        </div>
+    </div>
+
+
+    <script src="add.js"></script>
+    <script src="script.js" type="module"></script>
+
+</body>
+
+</html>
