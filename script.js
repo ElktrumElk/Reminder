@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-
 const subGFrame = document.getElementById("subframe");
 const back = document.getElementById("goBack");
 const lscont = document.getElementById("listcont");
@@ -114,17 +112,6 @@ back.addEventListener("click", () => {
     }
 });
 
-
-=======
-
-
-const subGBtn = document.getElementById("sB");
-const subGFrame = document.getElementById("subframe");
-const back = document.getElementById("goBack");
-
-let isSGFrame = false;
-
-
 /**
  * 
  * @param {HTMLElement} node 
@@ -179,4 +166,4 @@ back.addEventListener("click", () => {
     }
 });
 
->>>>>>> ac109cfe00c40a81bf190e3b325cca2330e9d30e
+
