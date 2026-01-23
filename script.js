@@ -39,6 +39,7 @@ layout.addEventListener("click", (e) => {
             if (!inf) return;
             let arr = inf.split(",")
             let i = 0;
+
             arr.forEach(info => {
 
                 const listRow = document.createElement("div");
@@ -59,6 +60,7 @@ layout.addEventListener("click", (e) => {
                 if (arr.length === 1) {
 
                     lscont.appendChild(listRow);
+                    i = 0;
 
                } else if (arr.length > 1) {
                     if (i > 0) {
@@ -67,7 +69,7 @@ layout.addEventListener("click", (e) => {
                     lscont.appendChild(listRow);
 
                 }
-                i += 1;
+                i = 1;
 
             })
 
@@ -105,65 +107,17 @@ back.addEventListener("click", () => {
 
         isSGFrame = false;
         const listrow = document.querySelectorAll(".list_sec");
+        const lines = document.querySelectorAll("line");
+        
+        lscont.innerHTML = "";
+
         listrow.forEach(lst => {
             lst.remove();
+
+            lines.forEach(l => {
+                l.remove();
+            });
         });
 
     }
 });
-
-/**
- * 
- * @param {HTMLElement} node 
- */
-
-
-subGBtn.addEventListener("click", () => {
-
-    if (!isSGFrame) {
-        subGFrame.style.display = "flex";
-        subGFrame.style.position = "fixed";
-
-
-        requestAnimationFrame(() => {
-            subGFrame.style.transform = "translateX(0%)";
-            mainApp.style.transform = "translateX(120%)";
-        });
-
-        setTimeout(() => {
-
-            mainApp.style.display = "none";
-            subGFrame.style.position = "";
-
-        }, 600);
-        isSGFrame = true;
-    }
-});
-
-back.addEventListener("click", () => {
-
-    if (isSGFrame) {
-
-        mainApp.style.display = "flex";
-        subGFrame.style.position = "fixed";
-
-
-        requestAnimationFrame(() => {
-
-            mainApp.style.transform = "translateX(0%)";
-            subGFrame.style.transform = "translateX(100%)";
-
-        });
-
-        setTimeout(() => {
-
-            subGFrame.style.display = "none";
-
-        }, 600);
-
-        isSGFrame = false;
-
-    }
-});
-
-
