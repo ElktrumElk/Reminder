@@ -17,6 +17,7 @@ layout.addEventListener("click", (e) => {
 
     if (!isSGFrame) {
         let subGBtn = e.target.closest(".sbtn");
+        
 
         if (subGBtn) {
 
@@ -38,9 +39,9 @@ layout.addEventListener("click", (e) => {
 
             }, 600);
 
-            console.log(e.target.id)
-            let inf = JSON.parse(localStorage.getItem("info"))[`${e.target.id}`];
-
+            
+            let inf = JSON.parse(localStorage.getItem("info"))?.[`${e.target.id}`];
+            
             if (inf) {
 
                 let arr = inf.subGoals;
@@ -82,9 +83,8 @@ layout.addEventListener("click", (e) => {
             isSGFrame = true;
         }
 
-    } else {
-        return;
-    }
+    } 
+    let otp = e.target.closest(".")
 });
 
 back.addEventListener("click", () => {

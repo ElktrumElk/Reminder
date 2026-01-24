@@ -3,10 +3,14 @@
  * @param {String} tit -- Title of your goal
  * @param {String} description -- Short description of your goal
  * @param {HTMLElement} layout -- The parent element that the card needs to append to.
+ * @param {string} uniqueId -- Id that is to be associated with the card
+ * @param {Date} time -- Id that is to be associated with the card
  */
 
-export default function renderCard(tit, description, layout, uniqueId) {
+export default function renderCard(tit, description, layout, uniqueId, rtime) {
+    
     /**-------------------------------------- */
+
     const card = document.createElement("div");
     card.setAttribute("class", "cards");
 
@@ -34,6 +38,19 @@ export default function renderCard(tit, description, layout, uniqueId) {
     cardTitle.innerText = tit;
     titleSec.appendChild(cardTitle);
 
+    //time indicator
+    const timeSet = document.createElement("span");
+    timeSet.setAttribute("class", "time_set");
+    timeSet.innerText = rtime;
+    titleSec.appendChild(timeSet);
+
+    //option for cards
+    const cardOption = document.createElement("span");
+    cardOption.setAttribute("class", 'card_options');
+    cardOption.innerHTML = "&#8942;";
+    titleSec.appendChild(cardOption);
+
+    //Description
     const descriptionCnt = document.createElement("div");
     descriptionCnt.setAttribute("class", "des");
     card.appendChild(descriptionCnt);
