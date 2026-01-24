@@ -1,3 +1,5 @@
+import renderCard from "./render_card";
+
 const addGoalTitle = document.getElementById("agtitle");
 const addGoalDes = document.getElementById("agdes");
 const addSubGoal = document.getElementById("add_sub_g_btn");
@@ -213,77 +215,54 @@ done.addEventListener("click", async () => {
     let tit = addGoalTitle.value;
     let description = addGoalDes.value;
 
-
-    let info = {}
-
     if (isSubgoals) {
         const subGoalsContainer = document.getElementById("sub_goals_cnt_pp");
 
         const inpt = document.querySelectorAll(".sub_title");
 
         inpt.forEach(input => {
-            console.log(input.value);
+
+            console.log(input.value); //debugging 
             subGoalsValue.push(input.value);
+
         })
     }
 
-    if (tit === "" || description === "") alert("filling info");
+    if (tit === "" || description === "") alert("complete the information");
 
-    const card = document.createElement("div");
-    card.setAttribute("class", "cards");
+    renderCard(tit, description, layout);
 
-    if (layout.children.length === 0) {
-        layout.appendChild(card);
-    }
-    else {
-        layout.insertBefore(card, layout.firstChild);
-    }
-
-    const titleSec = document.createElement("div");
-    titleSec.setAttribute("class", "remind_topic_cnt");
-    card.appendChild(titleSec);
-
-
-    //the onset radio button
-    const onSetBtn = document.createElement("div");
-    onSetBtn.setAttribute("class", "on_set");
-    titleSec.appendChild(onSetBtn);
-
-    //The card goal title 
-    const cardTitle = document.createElement("h3");
-    cardTitle.setAttribute("class", "r_title");
-    cardTitle.innerText = tit;
-    titleSec.appendChild(cardTitle);
-
-    const descriptionCnt = document.createElement("div");
-    descriptionCnt.setAttribute("class", "des");
-    card.appendChild(descriptionCnt);
-
-    const descriptionTitle = document.createElement("p");
-    descriptionTitle.setAttribute("class", "desc2");
-    descriptionTitle.innerText = description;
-    descriptionCnt.appendChild(descriptionTitle);
-
-
-    const btnCnt = document.createElement("div");
-    btnCnt.setAttribute("class", "btn_cnt");
-    card.appendChild(btnCnt);
-
-    const subGoalBtn = document.createElement("button");
-    subGoalBtn.setAttribute("class", "sbtn");
-    subGoalBtn.setAttribute("id", `sub_${layout.childElementCount}`);
-    subGoalBtn.innerText = "Sub Goal"
-
-    btnCnt.appendChild(subGoalBtn);
-
-    const completeBtn = document.createElement("button");
-    completeBtn.setAttribute("class", "btn");
-    completeBtn.innerText = "Complete";
-    btnCnt.appendChild(completeBtn);
-
-
-    localStorage.setItem(`sub_${layout.childElementCount}`, subGoalsValue);
+    saveInfo(tit, description, subGoalsValue);
     subGoalsValue = [];
 
+
     closeF(); //calling f
-})
+});
+
+
+/**Collects the information and saved it in the info object in your browser localstorage*/
+function saveInfo(tit, description, subGoalsValue) {
+
+    let savedInfo = localStorage.getItem("info");
+    let mainDict = savedInfo ? JSON.parse(savedInfo) : {};
+
+    let info = {
+
+        title: tit,
+        description: description,
+        subGoals: [],
+        isOnSet: false,
+        isComplete: false,
+        isSubGoalsCompleteCount: 0,
+        isSubGoalsCompleted: []
+
+    }
+
+    info["subGoals"] = subGoalsValue;
+
+    mainDict[`sub_${layout.childElementCount}`] = info;
+
+    localStorage.setItem(`info`, JSON.stringify(mainDict));
+    subGoalsValue = [];
+
+}

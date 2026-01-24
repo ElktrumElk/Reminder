@@ -1,6 +1,7 @@
 const subGFrame = document.getElementById("subframe");
 const back = document.getElementById("goBack");
 const lscont = document.getElementById("listcont");
+const layout = document.getElementById("grid_layout");
 
 let isSGFrame = false;
 
@@ -16,13 +17,16 @@ layout.addEventListener("click", (e) => {
         let subGBtn = e.target.closest(".sbtn");
 
         if (subGBtn) {
+
             subGFrame.style.display = "flex";
             subGFrame.style.position = "fixed";
 
 
             requestAnimationFrame(() => {
+
                 subGFrame.style.transform = "translateX(0%)";
                 mainApp.style.transform = "translateX(120%)";
+
             });
 
             setTimeout(() => {
@@ -31,53 +35,51 @@ layout.addEventListener("click", (e) => {
                 subGFrame.style.position = "";
 
             }, 600);
+            console.log(e.target.id)
+            let inf = JSON.parse(localStorage.getItem("info"))[`${e.target.id}`];
 
-            let inf = localStorage.getItem(e.target.id);
-            console.log(inf);
-            console.log(e.target.id);
+            if (inf) {
 
-            if (!inf) return;
-            let arr = inf.split(",")
-            let i = 0;
+                let arr = inf.subGoals;
 
-            arr.forEach(info => {
+                let i = 0;
 
-                const listRow = document.createElement("div");
-                listRow.setAttribute("class", "list_sec");
+                arr.forEach(info => {
 
-                const radioBtn = document.createElement("div");
-                radioBtn.setAttribute("class", "radioComplete");
+                    const listRow = document.createElement("div");
+                    listRow.setAttribute("class", "list_sec");
 
-                const htag3 = document.createElement("h3");
-                htag3.innerText = info;
+                    const radioBtn = document.createElement("div");
+                    radioBtn.setAttribute("class", "radioComplete");
 
-                const line = document.createElement("div");
-                line.setAttribute("class", "line");
+                    const htag3 = document.createElement("h3");
+                    htag3.innerText = info;
 
-                listRow.appendChild(radioBtn);
-                listRow.appendChild(htag3);
+                    const line = document.createElement("div");
+                    line.setAttribute("class", "line");
 
-                if (arr.length === 1) {
+                    listRow.appendChild(radioBtn);
+                    listRow.appendChild(htag3);
 
-                    lscont.appendChild(listRow);
-                    i = 0;
+                    if (arr.length === 1) {
 
-               } else if (arr.length > 1) {
-                    if (i > 0) {
-                        lscont.appendChild(line);
+                        lscont.appendChild(listRow);
+                        i = 0;
+
+                    } else if (arr.length > 1) {
+                        if (i > 0) {
+                            lscont.appendChild(line);
+                        }
+                        lscont.appendChild(listRow);
                     }
-                    lscont.appendChild(listRow);
+                    i = 1;
 
-                }
-                i = 1;
-
-            })
+                });
+            }
 
             isSGFrame = true;
 
-
         }
-
 
     } else {
         return;
@@ -108,7 +110,7 @@ back.addEventListener("click", () => {
         isSGFrame = false;
         const listrow = document.querySelectorAll(".list_sec");
         const lines = document.querySelectorAll("line");
-        
+
         lscont.innerHTML = "";
 
         listrow.forEach(lst => {
