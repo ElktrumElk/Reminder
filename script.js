@@ -2,6 +2,8 @@ const subGFrame = document.getElementById("subframe");
 const back = document.getElementById("goBack");
 const lscont = document.getElementById("listcont");
 const layout = document.getElementById("grid_layout");
+const mainApp = document.getElementById("mainapp");
+
 
 let isSGFrame = false;
 

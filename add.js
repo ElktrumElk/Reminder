@@ -1,4 +1,4 @@
-import renderCard from "./render_card";
+import renderCard from "./render_card.js";
 
 const addGoalTitle = document.getElementById("agtitle");
 const addGoalDes = document.getElementById("agdes");
@@ -228,13 +228,13 @@ done.addEventListener("click", async () => {
         })
     }
 
-    if (tit === "" || description === "") alert("complete the information");
+    if (tit === "" || description === "") alert("complete the information"); return;
 
+    //Comment: This render the template cards
     renderCard(tit, description, layout);
 
     saveInfo(tit, description, subGoalsValue);
     subGoalsValue = [];
-
 
     closeF(); //calling f
 });
