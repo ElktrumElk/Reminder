@@ -79,7 +79,6 @@ layout.addEventListener("click", (e) => {
 
                 });
             }
-
             isSGFrame = true;
         }
 
