@@ -560,15 +560,20 @@ body {
     color: var(--hover-color);
 }
 
-m//lhxvhux
+
 .time_set {
-    margin: inz 2wcdsqw;qxcdline-start: auto;
-    margin-inzline-start: auto;
+    margin-inline-start: auto;
     padding: .3rem .5rem;
     border: 1px solid gray;
     border-radius: .3rem;
     font-family: sans-serif;
 
+}
+
+.card_options {
+    font-weight: 400;
+    font-family: sans-serif;
+    color: gray;
 }
 @media (min-width: 480px) {
     .grid_layout {
