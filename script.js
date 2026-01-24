@@ -1,6 +1,9 @@
 const subGFrame = document.getElementById("subframe");
 const back = document.getElementById("goBack");
 const lscont = document.getElementById("listcont");
+const layout = document.getElementById("grid_layout");
+const mainApp = document.getElementById("mainapp");
+
 
 let isSGFrame = false;
 
@@ -16,13 +19,16 @@ layout.addEventListener("click", (e) => {
         let subGBtn = e.target.closest(".sbtn");
 
         if (subGBtn) {
+
             subGFrame.style.display = "flex";
             subGFrame.style.position = "fixed";
 
 
             requestAnimationFrame(() => {
+
                 subGFrame.style.transform = "translateX(0%)";
                 mainApp.style.transform = "translateX(120%)";
+
             });
 
             setTimeout(() => {
@@ -32,52 +38,49 @@ layout.addEventListener("click", (e) => {
 
             }, 600);
 
-            let inf = localStorage.getItem(e.target.id);
-            console.log(inf);
-            console.log(e.target.id);
+            console.log(e.target.id)
+            let inf = JSON.parse(localStorage.getItem("info"))[`${e.target.id}`];
 
-            if (!inf) return;
-            let arr = inf.split(",")
-            let i = 0;
+            if (inf) {
 
-            arr.forEach(info => {
+                let arr = inf.subGoals;
 
-                const listRow = document.createElement("div");
-                listRow.setAttribute("class", "list_sec");
+                let i = 0;
 
-                const radioBtn = document.createElement("div");
-                radioBtn.setAttribute("class", "radioComplete");
+                arr.forEach(info => {
 
-                const htag3 = document.createElement("h3");
-                htag3.innerText = info;
+                    const listRow = document.createElement("div");
+                    listRow.setAttribute("class", "list_sec");
 
-                const line = document.createElement("div");
-                line.setAttribute("class", "line");
+                    const radioBtn = document.createElement("div");
+                    radioBtn.setAttribute("class", "radioComplete");
 
-                listRow.appendChild(radioBtn);
-                listRow.appendChild(htag3);
+                    const htag3 = document.createElement("h3");
+                    htag3.innerText = info;
 
-                if (arr.length === 1) {
+                    const line = document.createElement("div");
+                    line.setAttribute("class", "line");
 
-                    lscont.appendChild(listRow);
-                    i = 0;
+                    listRow.appendChild(radioBtn);
+                    listRow.appendChild(htag3);
 
-               } else if (arr.length > 1) {
-                    if (i > 0) {
-                        lscont.appendChild(line);
+                    if (arr.length === 1) {
+
+                        lscont.appendChild(listRow);
+                        i = 0;
+
+                    } else if (arr.length > 1) {
+                        if (i > 0) {
+                            lscont.appendChild(line);
+                        }
+                        lscont.appendChild(listRow);
                     }
-                    lscont.appendChild(listRow);
+                    i = 1;
 
-                }
-                i = 1;
-
-            })
-
+                });
+            }
             isSGFrame = true;
-
-
         }
-
 
     } else {
         return;
@@ -108,7 +111,7 @@ back.addEventListener("click", () => {
         isSGFrame = false;
         const listrow = document.querySelectorAll(".list_sec");
         const lines = document.querySelectorAll("line");
-        
+
         lscont.innerHTML = "";
 
         listrow.forEach(lst => {

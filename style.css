@@ -559,6 +559,16 @@ body {
     background-color: var(--hover-bg-color);
     color: var(--hover-color);
 }
+
+
+.time_set {
+    margin-inline-start: auto;
+    padding: .3rem .5rem;
+    border: 1px solid gray;
+    border-radius: .3rem;
+    font-family: sans-serif;
+
+}
 @media (min-width: 480px) {
     .grid_layout {
         grid-template-columns: repeat(2, 1fr);
