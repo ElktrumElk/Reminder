@@ -5,10 +5,11 @@
  * @param {HTMLElement} layout -- The parent element that the card needs to append to.
  */
 
-export default function renderCard(tit, description, layout) {
+export default function renderCard(tit, description, layout, uniqueId) {
     /**-------------------------------------- */
     const card = document.createElement("div");
     card.setAttribute("class", "cards");
+
 
     if (layout.children.length === 0) {
         layout.appendChild(card);
@@ -49,7 +50,7 @@ export default function renderCard(tit, description, layout) {
 
     const subGoalBtn = document.createElement("button");
     subGoalBtn.setAttribute("class", "sbtn");
-    subGoalBtn.setAttribute("id", `sub_${layout.childElementCount}`);
+    subGoalBtn.setAttribute("id", `sub_${uniqueId}`);
     subGoalBtn.innerText = "Sub Goal"
 
     btnCnt.appendChild(subGoalBtn);

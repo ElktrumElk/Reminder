@@ -212,10 +212,14 @@ let subGoalsValue = [];
 /**Add the new reminder to the list */
 done.addEventListener("click", async () => {
 
+    //Comment: generate a unique id for each object
+    const uniqueId = crypto.randomUUID();
+
     let tit = addGoalTitle.value;
     let description = addGoalDes.value;
 
     if (isSubgoals) {
+
         const subGoalsContainer = document.getElementById("sub_goals_cnt_pp");
 
         const inpt = document.querySelectorAll(".sub_title");
@@ -228,12 +232,15 @@ done.addEventListener("click", async () => {
         })
     }
 
-    if (tit === "" || description === "") alert("complete the information"); return;
+    if (tit === "" || description === "") { alert("complete the information"); return };
 
     //Comment: This render the template cards
-    renderCard(tit, description, layout);
+    renderCard(tit, description, layout, uniqueId);
 
-    saveInfo(tit, description, subGoalsValue);
+    //Comment: Save information
+    saveInfo(tit, description, subGoalsValue, uniqueId);
+
+    //Comment: Clear the array
     subGoalsValue = [];
 
     closeF(); //calling f
@@ -241,7 +248,7 @@ done.addEventListener("click", async () => {
 
 
 /**Collects the information and saved it in the info object in your browser localstorage*/
-function saveInfo(tit, description, subGoalsValue) {
+function saveInfo(tit, description, subGoalsValue, uniqueId) {
 
     let savedInfo = localStorage.getItem("info");
     let mainDict = savedInfo ? JSON.parse(savedInfo) : {};
@@ -260,7 +267,7 @@ function saveInfo(tit, description, subGoalsValue) {
 
     info["subGoals"] = subGoalsValue;
 
-    mainDict[`sub_${layout.childElementCount}`] = info;
+    mainDict[`sub_${uniqueId}`] = info;
 
     localStorage.setItem(`info`, JSON.stringify(mainDict));
     subGoalsValue = [];

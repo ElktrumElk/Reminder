@@ -37,6 +37,7 @@ layout.addEventListener("click", (e) => {
                 subGFrame.style.position = "";
 
             }, 600);
+
             console.log(e.target.id)
             let inf = JSON.parse(localStorage.getItem("info"))[`${e.target.id}`];
 
@@ -80,7 +81,6 @@ layout.addEventListener("click", (e) => {
             }
 
             isSGFrame = true;
-
         }
 
     } else {
