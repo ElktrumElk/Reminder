@@ -213,13 +213,14 @@ let subGoalsValue = [];
 done.addEventListener("click", async () => {
 
     //Comment: generate a unique id for each object
-    const uniqueId = crypto.randomUUID();
+    let uniqueId = crypto.randomUUID();
 
     let tit = addGoalTitle.value;
     let description = addGoalDes.value;
+    let r_time = reminderTime.value;
+
 
     if (isSubgoals) {
-
         const subGoalsContainer = document.getElementById("sub_goals_cnt_pp");
 
         const inpt = document.querySelectorAll(".sub_title");
@@ -232,13 +233,13 @@ done.addEventListener("click", async () => {
         })
     }
 
-    if (tit === "" || description === "") { alert("complete the information"); return };
+    if (tit === "" || description === "" || r_time === "") { alert("complete the information"); return };
 
     //Comment: This render the template cards
-    renderCard(tit, description, layout, uniqueId);
+    renderCard(tit, description, layout, uniqueId, r_time);
 
     //Comment: Save information
-    saveInfo(tit, description, subGoalsValue, uniqueId);
+    saveInfo(tit, description, subGoalsValue, uniqueId, r_time);
 
     //Comment: Clear the array
     subGoalsValue = [];
@@ -248,7 +249,7 @@ done.addEventListener("click", async () => {
 
 
 /**Collects the information and saved it in the info object in your browser localstorage*/
-function saveInfo(tit, description, subGoalsValue, uniqueId) {
+function saveInfo(tit, description, subGoalsValue, id, tim) {
 
     let savedInfo = localStorage.getItem("info");
     let mainDict = savedInfo ? JSON.parse(savedInfo) : {};
@@ -261,13 +262,14 @@ function saveInfo(tit, description, subGoalsValue, uniqueId) {
         isOnSet: false,
         isComplete: false,
         isSubGoalsCompleteCount: 0,
-        isSubGoalsCompleted: []
+        isSubGoalsCompleted: [],
+        time: tim
 
     }
 
     info["subGoals"] = subGoalsValue;
 
-    mainDict[`sub_${uniqueId}`] = info;
+    mainDict[`sub_${id}`] = info;
 
     localStorage.setItem(`info`, JSON.stringify(mainDict));
     subGoalsValue = [];

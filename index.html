@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="./add.css">
     <link rel="stylesheet" href="./subGoals.css">
+    <link rel="stylesheet" href="./delete.css">
 </head>
 
 <body>
@@ -34,6 +35,7 @@
         <!--Main Section-->
         <main class="app_main">
 
+
             <section class="quick_access">
 
                 <h2 class="title">Reminders</h2>
@@ -48,12 +50,20 @@
 
             <section id="grid_layout" class="grid_layout">
 
+                <div id="opt_panel" class="panel">
+                    <button id="cls_btn">Close</button>
+                    <span class="card_ls_opt">Restart</span>
+                    <span id="delete_card" class="card_ls_opt" style="color: red;">Delete</span>
+                </div>
+
                 <div id="card" class="cards">
+
                     <div class="remind_topic_cnt">
 
                         <div class="on_set"></div>
                         <h3 id="r_title">Today's Goal</h3>
                         <span class="time_set">1:00</span>
+                        <span class="card_options">&#8942;</span>
 
                     </div>
 
@@ -106,7 +116,7 @@
         </div>
 
         <div class="reminder_cnt">
-            <h3> Reminder Time:</h3>
+            <h3> Remind me:</h3>
             <input id="r_time" type="time" class="r_time">
         </div>
 

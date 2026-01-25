@@ -1,8 +1,0 @@
-{
-    "name": "reminder",
-    "version": "1.0.0",
-    "type": "module",
-    "scripts": {
-        "add" : "./add.js"
-    }
-}
