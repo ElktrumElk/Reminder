@@ -3,21 +3,94 @@ const back = document.getElementById("goBack");
 const lscont = document.getElementById("listcont");
 const layout = document.getElementById("grid_layout");
 const mainApp = document.getElementById("mainapp");
+const panel = document.getElementById("opt_panel");
+const deletBtn = document.getElementById("delete_card");
+const closeBtn = document.getElementById("cls_btn");
 
+
+//flags
+let isOption = false;
 
 let isSGFrame = false;
+
+/**
+ * 
+ * @param {String} disp -- CSS display property value is needed here
+ * @param {Number} scale -- CSS tranformation scale is needed and value should be number
+ * @param {Boolean} bool 
+ */
+function animateOption(disp, scale, bool, e) {
+    panel.style.display = disp;
+
+
+    requestAnimationFrame(() => {
+
+        panel.style.transform = `scale(${scale})`;
+
+    });
+
+    let positionY = e.pageY;
+
+    panel.style.top = positionY + "px";
+
+    isOption = bool;
+}
+
+/**open the option panel */
+function displayOptions(e) {
+
+    if (!isOption) {
+
+        animateOption("flex", 1, true, e);
+
+    } else {
+
+        //Comment: close the option panel 
+        closeOptions();
+
+        //re-open the option panel
+        setTimeout(() => {
+
+            animateOption("flex", 1, true, e);
+
+        }, 300)
+    }
+}
+
+
+/** Close the card option panel */
+function closeOptions() {
+
+    if (isOption) {
+
+        panel.style.transform = "scale(0)";
+
+        setTimeout(() => {
+            panel.style.display = "none";
+        }, 200)
+
+        isOption = false;
+    }
+}
+
+//flags
+let objectToDelete; //holds the current card
+let isObjectDataTODelete;
+
+//close on scroll
+document.addEventListener("scroll", () => closeOptions());
+
 
 /**
  * 
  * @param {HTMLElement} node 
  */
 
-
 layout.addEventListener("click", (e) => {
 
     if (!isSGFrame) {
         let subGBtn = e.target.closest(".sbtn");
-        
+
 
         if (subGBtn) {
 
@@ -39,9 +112,9 @@ layout.addEventListener("click", (e) => {
 
             }, 600);
 
-            
+
             let inf = JSON.parse(localStorage.getItem("info"))?.[`${e.target.id}`];
-            
+
             if (inf) {
 
                 let arr = inf.subGoals;
@@ -83,10 +156,41 @@ layout.addEventListener("click", (e) => {
             isSGFrame = true;
         }
 
-    } 
-    let otp = e.target.closest(".")
+    }
+
+    let opt = e.target.closest(".card_options");
+
+
+    if (opt) {
+        objectToDelete = e.target.closest(".cards");
+        isObjectDataTODelete = objectToDelete.getAttribute("dataset-id");
+        displayOptions(e);
+    }
+
+    let onSet = e.target.closest(".on_set");
+    let onSetUnactive = e.target.closest(".on_set_active");
+
+    if (onSet) {
+
+        if (onSet.classList.contains("on_set")) {
+
+            onSet.classList.remove("on_set");
+            onSet.classList.add("on_set_active");
+            console.log("ok")
+
+        }
+    }
+    else if (onSetUnactive) {
+
+        if (onSetUnactive.classList.contains("on_set_active")) {
+            onSetUnactive.classList.remove("on_set_active");
+            onSetUnactive.classList.add("on_set");
+            console.log("yup")
+        }
+    }
 });
 
+//Go back to main frame
 back.addEventListener("click", () => {
 
     if (isSGFrame) {
@@ -123,4 +227,36 @@ back.addEventListener("click", () => {
         });
 
     }
+});
+
+
+function animateDelete() {
+
+    objectToDelete.style.transform = "translateX(-100%)";
+    objectToDelete.style.opacity = ".1";
+
+    setTimeout(() => {
+
+        objectToDelete.remove();
+
+    }, 600)
+}
+
+
+deletBtn.addEventListener("click", () => {
+
+    console.log(isObjectDataTODelete);
+    let data = JSON.parse(localStorage.getItem("info"))
+
+    delete data[`sub_${isObjectDataTODelete}`];
+
+    localStorage.setItem("info", JSON.stringify(data));
+
+    animateDelete();
+    closeOptions();
+
+});
+
+closeBtn.addEventListener("click", () => {
+    closeOptions();
 });

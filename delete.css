@@ -1,0 +1,65 @@
+:root {
+
+    --bg-color: whitesmoke;
+    --bg-color-a: white;
+    --text-color: black;
+    --hover-bg-color: rgba(255, 68, 0, 0.571);
+    --hover-color: white;
+    --card-bg: rgb(241, 240, 240);
+    --orange-border: rgb(246, 78, 17);
+
+}
+
+body.dark {
+
+    --bg-color: black;
+}
+
+.panel {
+    width: 10rem;
+    max-height: 10rem;
+    border: 1px solid gray;
+    border-radius: 1rem;
+    background-color: var(--bg-color-a);
+
+    position: fixed;
+    right: 40px;
+
+    box-sizing: border-box;
+    box-shadow: 0px 0px 9px 1px gray;
+    overflow: auto;
+    transform: scale(0);
+    display: none;
+    flex-direction: column;
+    gap: .5rem;
+    padding: 1rem .4rem;
+    transition: transform .3s ease;
+
+}
+
+.card_ls_opt {
+
+    border: 1px solid gray;
+    color: var(--text-color);
+    font-family: sans-serif;
+    font-weight: 600;
+    border-radius: .5rem;
+    padding: .4rem .5rem;
+
+}
+
+.card_ls_opt:hover {
+    background-color: var(--hover-bg-color);
+    color: var(--hover-color);
+}
+
+/*On hold*/
+#cls_btn {
+
+    border: 1px solid gray;
+    color: var(--text-color);
+    font-family: sans-serif;
+    font-weight: 600;
+    border-radius: .5rem;
+    padding: .1rem .1rem;
+}

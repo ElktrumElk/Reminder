@@ -212,8 +212,6 @@ let subGoalsValue = [];
 /**Add the new reminder to the list */
 done.addEventListener("click", async () => {
 
-
-
     //Comment: generate a unique id for each object
     let uniqueId = crypto.randomUUID();
 

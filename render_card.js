@@ -1,10 +1,10 @@
 /**
  * 
- * @param {String} tit -- Title of your goal
- * @param {String} description -- Short description of your goal
- * @param {HTMLElement} layout -- The parent element that the card needs to append to.
- * @param {string} uniqueId -- Id that is to be associated with the card
- * @param {Date} time -- Id that is to be associated with the card
+ * @param {String} tit - Title of your goal
+ * @param {String} description - Short description of your goal
+ * @param {HTMLElement} layout - The parent element that the card needs to append to.
+ * @param {string} uniqueId - Id that is to be associated with the card
+ * @param {Date} time - Id that is to be associated with the card
  */
 
 export default function renderCard(tit, description, layout, uniqueId, rtime) {
@@ -13,7 +13,8 @@ export default function renderCard(tit, description, layout, uniqueId, rtime) {
 
     const card = document.createElement("div");
     card.setAttribute("class", "cards");
-
+    card.setAttribute("dataset-id", `${uniqueId}`);
+    
 
     if (layout.children.length === 0) {
         layout.appendChild(card);

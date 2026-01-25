@@ -11,8 +11,6 @@ window.addEventListener("load", () => {
     Object.keys(finalCard).forEach(key => {
         let saveRTime = finalCard[`${key}`].time;
 
-        console.log(key.slice(4));
-
         renderCard(finalCard[`${key}`].title, finalCard[`${key}`].description, layout, key.slice(4), saveRTime);
 
     })
