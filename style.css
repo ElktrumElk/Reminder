@@ -209,6 +209,7 @@ body {
     opacity: 1;
     transition: transform .4s ease-out, opacity .4s ease-out;
     padding: 1rem;
+    margin-block-start: 1rem;
 
 }
 

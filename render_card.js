@@ -116,7 +116,7 @@ export function subGoalCard({ layout = "", title = "", description = "", rtime =
     descriptionTitle.innerText = "Task: " + description;
     descriptionCnt.appendChild(descriptionTitle);
  
-    const sub = 
+   
 
     if (isAppend != null) {
         card.appendChild(isAppend)
