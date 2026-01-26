@@ -32,6 +32,7 @@ export default function renderCard(tit, description, layout, uniqueId, rtime) {
     //the onset radio button
     const onSetBtn = document.createElement("div");
     onSetBtn.setAttribute("class", "on_set");
+    onSetBtn.setAttribute("id", `set_${uniqueId}`)
     onSetBtn.setAttribute("dataset-id", `${uniqueId}`);
     titleSec.appendChild(onSetBtn);
 

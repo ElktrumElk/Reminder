@@ -204,19 +204,16 @@ layout.addEventListener("click", (e) => {
     let onSet = e.target.closest(".on_set");
     let onSetUnactive = e.target.closest(".on_set_active");
 
-
+    /** Check if onSet button was the target */
     if (onSet) {
 
+        /**Comment: Check if the onset button contains the classList on_set */
         if (onSet.classList.contains("on_set")) {
 
-            onSet.classList.remove("on_set");
-            onSet.classList.add("on_set_active");
-
+            onSet.classList.remove("on_set"); //remove on_set
+            onSet.classList.add("on_set_active"); //add on_set_active
+            
             let savedInf = JSON.parse(localStorage.getItem(`${onSet.getAttribute("dataset-id")}`));
-
-
-            console.log(savedInf); //debugging
-            console.log(`${onSet.getAttribute("dataset-id")}`); //debugging
 
             if (!savedInf["isOnSet"]) {
 
@@ -232,14 +229,14 @@ layout.addEventListener("click", (e) => {
             }
         }
     }
-    
+
     else if (onSetUnactive) {
 
         if (onSetUnactive.classList.contains("on_set_active")) {
             onSetUnactive.classList.remove("on_set_active");
             onSetUnactive.classList.add("on_set");
 
-            let savedInf = JSON.parse(localStorage.getItem(`${onSet.getAttribute("dataset-id")}`));
+            let savedInf = JSON.parse(localStorage.getItem(`${onSetUnactive.getAttribute("dataset-id")}`));
             
             if (savedInf["isOnSet"]) {
 
@@ -247,7 +244,7 @@ layout.addEventListener("click", (e) => {
 
                 try {
 
-                    localStorage.setItem(`${onSet.getAttribute("dataset-id")}`, JSON.stringify(savedInf));
+                    localStorage.setItem(`${onSetUnactive.getAttribute("dataset-id")}`, JSON.stringify(savedInf));
                 }
                 catch (e) {
                     console.error("An error occure", e)
