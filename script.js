@@ -182,10 +182,10 @@ layout.addEventListener("click", (e) => {
             }
 
             subGoalCard({
-                title: "Demo",
+                title: inf.title,
                 layout: subGFrame,
-                description: "This is jus a demo creation man!!",
-                rtime: "3:30",
+                description: inf.description,
+                rtime: inf.time,
                 isAppend: lscont
             }) // demo creatio
 
