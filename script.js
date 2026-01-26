@@ -1,3 +1,6 @@
+import renderCard from "./render_card.js";
+import { subGoalCard } from "./render_card.js";
+
 const subGFrame = document.getElementById("subframe");
 const back = document.getElementById("goBack");
 const lscont = document.getElementById("listcont");
@@ -19,6 +22,7 @@ let isSGFrame = false;
  * @param {Number} scale -- CSS tranformation scale is needed and value should be number
  * @param {Boolean} bool 
  */
+
 function animateOption(disp, scale, bool, e) {
     panel.style.display = disp;
 
@@ -101,9 +105,10 @@ layout.addEventListener("click", (e) => {
 
     if (!isSGFrame) {
         let subGBtn = e.target.closest(".sbtn");
+        let cardClick = e.target.closest(".desc2");
 
 
-        if (subGBtn) {
+        if (subGBtn || cardClick) {
 
             subGFrame.style.display = "flex";
             subGFrame.style.position = "fixed";
@@ -126,11 +131,22 @@ layout.addEventListener("click", (e) => {
 
             let inf = JSON.parse(localStorage.getItem("info"))?.[`${e.target.id}`];
 
+
+
+            if (e.target == cardClick) {
+
+
+                inf = JSON.parse(localStorage.getItem("info"))?.[`sub_${e.target.getAttribute("dataset-id")}`];
+
+            }
+
             if (inf) {
 
                 let arr = inf.subGoals;
 
                 let i = 0;
+
+
 
                 arr.forEach(info => {
 
@@ -164,6 +180,15 @@ layout.addEventListener("click", (e) => {
 
                 });
             }
+            
+            subGoalCard({
+                title: "Demo",
+                layout: subGFrame,
+                description: "This is jus a demo creation man!!",
+                rtime: "3:30",
+                isAppend: lscont
+            }) // demo creatio
+
             isSGFrame = true;
         }
 
@@ -199,6 +224,12 @@ layout.addEventListener("click", (e) => {
             console.log("yup")
         }
     }
+});
+
+
+layout.addEventListener("dblclick", (e) => {
+
+    X
 });
 
 //Go back to main frame

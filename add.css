@@ -85,6 +85,17 @@
     outline: none;
 
 }
+.desc3 {
+
+    width: 90%;
+    height: auto;
+    border: none;
+    font-size: 1rem;
+    margin-block-start: 1rem;
+    background-color: transparent;
+    outline: none;
+
+}
 
 .add_sub_goal {
     width: 8rem;

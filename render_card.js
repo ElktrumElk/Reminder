@@ -8,18 +8,19 @@
  */
 
 export default function renderCard(tit, description, layout, uniqueId, rtime) {
-    
+
     /**-------------------------------------- */
 
     const card = document.createElement("div");
     card.setAttribute("class", "cards");
     card.setAttribute("dataset-id", `${uniqueId}`);
-    
+
 
     if (layout.children.length === 0) {
         layout.appendChild(card);
     }
     else {
+
         layout.insertBefore(card, layout.firstChild);
     }
 
@@ -58,6 +59,7 @@ export default function renderCard(tit, description, layout, uniqueId, rtime) {
 
     const descriptionTitle = document.createElement("p");
     descriptionTitle.setAttribute("class", "desc2");
+    descriptionTitle.setAttribute("dataset-id", `${uniqueId}`);
     descriptionTitle.innerText = description;
     descriptionCnt.appendChild(descriptionTitle);
 
@@ -77,4 +79,44 @@ export default function renderCard(tit, description, layout, uniqueId, rtime) {
     completeBtn.setAttribute("class", "btn");
     completeBtn.innerText = "Complete";
     btnCnt.appendChild(completeBtn);
+}
+
+
+export function subGoalCard({ layout = "", title = "", description = "", rtime = "1:00", isAppend = null}) {
+
+    const card = document.createElement("div");
+    card.setAttribute("class", "cards2");
+
+    layout.appendChild(card);
+
+    const titleSec = document.createElement("div");
+    titleSec.setAttribute("class", "remind_topic_cnt");
+    card.appendChild(titleSec);
+
+    //The card goal title 
+    const cardTitle = document.createElement("h3");
+    cardTitle.setAttribute("class", "r_title");
+    cardTitle.innerText = title;
+    titleSec.appendChild(cardTitle);
+
+    //time indicator
+    const timeSet = document.createElement("span");
+    timeSet.setAttribute("class", "time_set");
+    timeSet.innerText = rtime;
+    titleSec.appendChild(timeSet);
+
+    //Description
+    const descriptionCnt = document.createElement("div");
+    descriptionCnt.setAttribute("class", "des");
+    card.appendChild(descriptionCnt);
+
+    const descriptionTitle = document.createElement("p");
+    descriptionTitle.setAttribute("class", "desc3");
+    descriptionTitle.innerText = description;
+    descriptionCnt.appendChild(descriptionTitle);
+
+    if (isAppend != null) {
+        card.appendChild(isAppend)
+    }
+
 }
