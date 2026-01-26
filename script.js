@@ -212,7 +212,7 @@ layout.addEventListener("click", (e) => {
 
             onSet.classList.remove("on_set");
             onSet.classList.add("on_set_active");
-            console.log("ok")
+            
 
         }
     }
