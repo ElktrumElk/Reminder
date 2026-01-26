@@ -213,7 +213,7 @@ let subGoalsValue = [];
 done.addEventListener("click", async () => {
 
     //Comment: generate a unique id for each object
-    let uniqueId = crypto.randomUUID();
+    let uniqueId = `${crypto.randomUUID()}`;
 
     let tit = addGoalTitle.value;
     let description = addGoalDes.value;
@@ -251,11 +251,9 @@ done.addEventListener("click", async () => {
 /**Collects the information and saved it in the info object in your browser localstorage*/
 function saveInfo(tit, description, subGoalsValue, id, tim) {
 
-    let savedInfo = localStorage.getItem("info");
-    let mainDict = savedInfo ? JSON.parse(savedInfo) : {};
-
     let info = {
-
+        
+        cardId: id,
         title: tit,
         description: description,
         subGoals: [],
@@ -269,9 +267,13 @@ function saveInfo(tit, description, subGoalsValue, id, tim) {
 
     info["subGoals"] = subGoalsValue;
 
-    mainDict[`sub_${id}`] = info;
+    /**
+     * Depricated
+     * mainDict[`sub_${id}`] = info;
+     * 
+     */
 
-    localStorage.setItem(`info`, JSON.stringify(mainDict));
+    localStorage.setItem(`${id}`, JSON.stringify(info));
     subGoalsValue = [];
 
 }

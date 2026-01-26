@@ -129,21 +129,17 @@ layout.addEventListener("click", (e) => {
             }, 600);
 
 
-            let inf = JSON.parse(localStorage.getItem("info"))?.[`${e.target.id}`];
+            let inf = JSON.parse(localStorage.getItem(`${e.target.id.slice(4)}`));
 
-
-
+            //This prevent conflicts between the sub goal button and the onset button
             if (e.target == cardClick) {
-
-
-                inf = JSON.parse(localStorage.getItem("info"))?.[`sub_${e.target.getAttribute("dataset-id")}`];
-
+                inf = JSON.parse(localStorage.getItem(`${e.target.getAttribute("dataset-id")}`)); //redeclare
             }
 
             if (inf) {
 
+                //init: retrieving the information
                 let arr = inf.subGoals;
-
                 let i = 0;
 
 
@@ -180,13 +176,15 @@ layout.addEventListener("click", (e) => {
 
                 });
             }
-
+            console.log(inf)
             subGoalCard({
+
                 title: inf.title,
                 layout: subGFrame,
                 description: inf.description,
                 rtime: inf.time,
                 isAppend: lscont
+
             }) // demo creatio
 
             isSGFrame = true;
@@ -206,22 +204,56 @@ layout.addEventListener("click", (e) => {
     let onSet = e.target.closest(".on_set");
     let onSetUnactive = e.target.closest(".on_set_active");
 
+
     if (onSet) {
 
         if (onSet.classList.contains("on_set")) {
 
             onSet.classList.remove("on_set");
             onSet.classList.add("on_set_active");
-            
 
+            let savedInf = JSON.parse(localStorage.getItem(`${onSet.getAttribute("dataset-id")}`));
+
+
+            console.log(savedInf); //debugging
+            console.log(`${onSet.getAttribute("dataset-id")}`); //debugging
+
+            if (!savedInf["isOnSet"]) {
+
+                savedInf["isOnSet"] = true;
+                try {
+
+                    localStorage.setItem(`${onSet.getAttribute("dataset-id")}`, JSON.stringify(savedInf));
+                }
+                catch (e) {
+                    console.error("An error occure", e)
+                }
+
+            }
         }
     }
+    
     else if (onSetUnactive) {
 
         if (onSetUnactive.classList.contains("on_set_active")) {
             onSetUnactive.classList.remove("on_set_active");
             onSetUnactive.classList.add("on_set");
-            console.log("yup")
+
+            let savedInf = JSON.parse(localStorage.getItem(`${onSet.getAttribute("dataset-id")}`));
+            
+            if (savedInf["isOnSet"]) {
+
+                savedInf["isOnSet"] = false;
+
+                try {
+
+                    localStorage.setItem(`${onSet.getAttribute("dataset-id")}`, JSON.stringify(savedInf));
+                }
+                catch (e) {
+                    console.error("An error occure", e)
+                }
+
+            }
         }
     }
 });
@@ -262,7 +294,7 @@ back.addEventListener("click", () => {
         lscont.innerHTML = "";
 
         cards.remove();
-        
+
         listrow.forEach(lst => {
             lst.remove();
 
@@ -290,15 +322,14 @@ function animateDelete() {
 
 deletBtn.addEventListener("click", () => {
 
+    //debugging
     console.log(isObjectDataTODelete);
-    let data = JSON.parse(localStorage.getItem("info"))
 
-    delete data[`sub_${isObjectDataTODelete}`];
+    /**Delete the card data from the local storage */
+    localStorage.removeItem(`${isObjectDataTODelete}`)
 
-    localStorage.setItem("info", JSON.stringify(data));
-
-    animateDelete();
-    closeOptions();
+    animateDelete(); //delete animation
+    closeOptions(); //close the delete panel after the delete button is pressed
 
 });
 
