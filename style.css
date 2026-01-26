@@ -149,7 +149,6 @@ body {
 
 .quick_access_btn_sec {
     display: flex;
-    margin-inline-start: auto;
     gap: .5rem;
 }
 
@@ -465,7 +464,9 @@ body {
     width: 90%;
     padding: .2rem;
     display: flex;
+    flex-direction: column;
     align-items: center;
+
 
 
 }
@@ -479,7 +480,9 @@ body {
 
 .quick_access_btn_sec {
     display: flex;
-    margin-inline-start: auto;
+    align-items: center;
+    align-self: center;
+    justify-content: center;
     gap: .5rem;
 }
 
