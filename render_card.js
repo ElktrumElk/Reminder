@@ -86,6 +86,7 @@ export function subGoalCard({ layout = "", title = "", description = "", rtime =
 
     const card = document.createElement("div");
     card.setAttribute("class", "cards2");
+    card.setAttribute("id", "card2");
 
     layout.appendChild(card);
 
@@ -96,7 +97,7 @@ export function subGoalCard({ layout = "", title = "", description = "", rtime =
     //The card goal title 
     const cardTitle = document.createElement("h3");
     cardTitle.setAttribute("class", "r_title");
-    cardTitle.innerText = title;
+    cardTitle.innerText = "Title: " + title;
     titleSec.appendChild(cardTitle);
 
     //time indicator
@@ -107,13 +108,15 @@ export function subGoalCard({ layout = "", title = "", description = "", rtime =
 
     //Description
     const descriptionCnt = document.createElement("div");
-    descriptionCnt.setAttribute("class", "des");
+    descriptionCnt.setAttribute("class", "des2");
     card.appendChild(descriptionCnt);
 
     const descriptionTitle = document.createElement("p");
     descriptionTitle.setAttribute("class", "desc3");
-    descriptionTitle.innerText = description;
+    descriptionTitle.innerText = "Task: " + description;
     descriptionCnt.appendChild(descriptionTitle);
+ 
+    const sub = 
 
     if (isAppend != null) {
         card.appendChild(isAppend)

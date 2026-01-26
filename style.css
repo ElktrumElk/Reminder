@@ -255,6 +255,15 @@ body {
 
 }
 
+.des2 {
+    width: 85%;
+    height: auto;
+    padding: .0rem 0rem 0rem 3rem;
+    margin: 0;
+    overflow: hidden;
+
+}
+
 .des p {
     margin: 0;
     font-family: sans-serif;

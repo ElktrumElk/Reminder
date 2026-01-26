@@ -180,7 +180,7 @@ layout.addEventListener("click", (e) => {
 
                 });
             }
-            
+
             subGoalCard({
                 title: "Demo",
                 layout: subGFrame,
@@ -257,9 +257,12 @@ back.addEventListener("click", () => {
         isSGFrame = false;
         const listrow = document.querySelectorAll(".list_sec");
         const lines = document.querySelectorAll("line");
+        const cards = document.getElementById("card2");
 
         lscont.innerHTML = "";
 
+        cards.remove();
+        
         listrow.forEach(lst => {
             lst.remove();
 
