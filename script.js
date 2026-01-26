@@ -30,10 +30,21 @@ function animateOption(disp, scale, bool, e) {
     });
 
     let positionY = e.pageY;
+    let positionX = e.pageX - 160;
 
-    panel.style.top = positionY + "px";
 
     isOption = bool;
+    if (window.screen.availWidth > 480) {
+
+        panel.style.top = positionY + "px";
+        panel.style.left = positionX + "px";
+        panel.style.scale = .8
+
+    } else {
+        panel.style.top = positionY + "px";
+        panel.style.left = "";
+        panel.style.scale = "";
+    }
 }
 
 /**open the option panel */
