@@ -95,7 +95,9 @@ let isObjectDataTODelete;
 //close on scroll
 document.addEventListener("scroll", () => closeOptions());
 
-
+function alrt() {
+    alert("hello");
+}
 /**
  * 
  * @param {HTMLElement} node 
@@ -150,7 +152,51 @@ layout.addEventListener("click", (e) => {
                     listRow.setAttribute("class", "list_sec");
 
                     const radioBtn = document.createElement("div");
+
+                    //Comment: set a dataset for accessability
+                    radioBtn.setAttribute("data-id", `${inf.cardId}`);
+
+                    let data = JSON.parse(localStorage.getItem(`${radioBtn.getAttribute("data-id")}`));
+
                     radioBtn.setAttribute("class", "radioComplete");
+
+                    radioBtn.addEventListener("click", () => {
+
+                        let data = JSON.parse(localStorage.getItem(`${radioBtn.getAttribute("data-id")}`));
+
+                        if (data.isOnSet) {
+                        if (radioBtn.classList.contains("radioComplete")) {
+                            radioBtn.classList.remove("radioComplete");
+                            radioBtn.classList.add("radioCompleted");
+
+                            data["isSubGoalsCompleteCount"] = parseInt(data.isSubGoalsCompleteCount) + 1
+                            data["isSubGoalsCompleted"].push(radioBtn.nextElementSibling.innerText);
+
+                            localStorage.setItem(data.cardId, JSON.stringify(data));
+
+                            if (listRow.nextElementSibling !== null) {
+                                listRow.nextElementSibling.style.borderColor = "rgb(246, 78, 17)";
+                            }
+
+                        } else {
+                            radioBtn.classList.remove("radioCompleted");
+                            radioBtn.classList.add("radioComplete");
+
+                            if (listRow.nextElementSibling !== null) {
+                                listRow.nextElementSibling.style.borderColor = "gray";
+                            }
+
+                            data["isSubGoalsCompleteCount"] = parseInt(data.isSubGoalsCompleteCount) - 1;
+                            data["isSubGoalsCompleted"] = data["isSubGoalsCompleted"].filter(x => x !== radioBtn.nextElementSibling.innerText);
+
+                            localStorage.setItem(data.cardId, JSON.stringify(data));
+                        }
+                    }else {
+                        alert("Main goal is not set.");
+                        return;
+                    }
+
+                    })
 
                     const htag3 = document.createElement("h3");
                     htag3.innerText = info;
@@ -172,11 +218,25 @@ layout.addEventListener("click", (e) => {
                         }
                         lscont.appendChild(listRow);
                     }
+
+                    //comment: check if subgaol is part of the completed array
+                    if (data.isOnSet) {
+                    if (data["isSubGoalsCompleted"].includes(radioBtn.nextElementSibling.innerText)) {
+                    
+                        radioBtn.classList.remove("radioComplete");
+                        radioBtn.classList.add("radioCompleted");
+
+                    } else {
+
+                        radioBtn.classList.remove("radioCompleted");
+                        radioBtn.classList.add("radioComplete");
+
+                    }
+                }
                     i = 1;
 
                 });
             }
-            console.log(inf)
             subGoalCard({
 
                 title: inf.title,
@@ -218,7 +278,7 @@ layout.addEventListener("click", (e) => {
             if (!savedInf["isOnSet"]) {
 
                 savedInf["isOnSet"] = true;
-                onSet.setAttribute("dataset-state", "active");
+
 
                 try {
 
@@ -240,15 +300,15 @@ layout.addEventListener("click", (e) => {
             onSetUnactive.classList.add("on_set");
 
             let savedInf = JSON.parse(localStorage.getItem(`${onSetUnactive.getAttribute("dataset-id")}`));
-            
+            console.log(savedInf)
             if (savedInf["isOnSet"]) {
 
                 savedInf["isOnSet"] = false;
-                onSetUnactive.setAttribute("data-state", "unactive");
+
 
                 try {
 
-                    localStorage.setItem(`${onSetUnactive.getAttribute("data-id")}`, JSON.stringify(savedInf));
+                    localStorage.setItem(savedInf["cardId"], JSON.stringify(savedInf));
                 }
                 catch (e) {
                     console.error("An error occure", e)
