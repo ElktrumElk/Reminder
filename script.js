@@ -212,18 +212,21 @@ layout.addEventListener("click", (e) => {
 
             onSet.classList.remove("on_set"); //remove on_set
             onSet.classList.add("on_set_active"); //add on_set_active
-            
+
             let savedInf = JSON.parse(localStorage.getItem(`${onSet.getAttribute("dataset-id")}`));
 
             if (!savedInf["isOnSet"]) {
 
                 savedInf["isOnSet"] = true;
+                onSet.setAttribute("dataset-state", "active");
+
                 try {
 
                     localStorage.setItem(`${onSet.getAttribute("dataset-id")}`, JSON.stringify(savedInf));
                 }
                 catch (e) {
-                    console.error("An error occure", e)
+
+                    console.error("An error occure", e);
                 }
 
             }
@@ -241,10 +244,11 @@ layout.addEventListener("click", (e) => {
             if (savedInf["isOnSet"]) {
 
                 savedInf["isOnSet"] = false;
+                onSetUnactive.setAttribute("data-state", "unactive");
 
                 try {
 
-                    localStorage.setItem(`${onSetUnactive.getAttribute("dataset-id")}`, JSON.stringify(savedInf));
+                    localStorage.setItem(`${onSetUnactive.getAttribute("data-id")}`, JSON.stringify(savedInf));
                 }
                 catch (e) {
                     console.error("An error occure", e)
@@ -253,12 +257,6 @@ layout.addEventListener("click", (e) => {
             }
         }
     }
-});
-
-
-layout.addEventListener("dblclick", (e) => {
-
-    X
 });
 
 //Go back to main frame
@@ -304,6 +302,9 @@ back.addEventListener("click", () => {
 });
 
 
+/**
+ * Animation for deleted cards
+ */
 function animateDelete() {
 
     objectToDelete.style.transform = "translateX(-100%)";

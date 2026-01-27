@@ -20,11 +20,15 @@ window.addEventListener("load", () => {
 
             onset.classList.remove("on_set")
             onset.classList.add("on_set_active");
+            onset.setAttribute("data-state", "active");
+
 
         } else {
 
             onset.classList.add("on_set");
             onset.classList.remove("on_set_active");
+            onset.setAttribute("data-state", "unactive");
+
 
         }
 
