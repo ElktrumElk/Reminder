@@ -17,14 +17,11 @@ const client = new OpenAI({
 // Simple quote endpoint
 app.post("/quote", async (req, res) => {
   try {
-    const { status } = req.body;
-
-    if (!status) return res.status(400).json({ error: "Theme is required" });
 
     const response = await client.responses.create({
       model: "llama-3.1-8b-instant",
       input: `generate a real quote from a real lengend or professor with the name of the quoter and the website you get it from.
-          return in json format only.
+          return in json format only, no extra words.
           format should look like this:
           {
             "Quoter": name_of_the_quoter,
@@ -48,4 +45,4 @@ app.post("/quote", async (req, res) => {
 
 // Start server
 const PORT = 3000;
-app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
+app.listen(PORT, "0.0.0.0", () => console.log(`Server running on http://localhost:${PORT}`));
