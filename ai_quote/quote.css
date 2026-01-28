@@ -112,6 +112,10 @@ body {
     color: gray;
     font-size: .8rem;
 }
+.source a {
+    text-decoration: none;
+    color: gray;
+}
 
 .quote_section {
 

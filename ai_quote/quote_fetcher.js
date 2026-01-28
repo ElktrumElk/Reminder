@@ -2,6 +2,8 @@ const quoteboard = document.getElementById("quote");
 const nameOfAuhter = document.getElementById("name");
 const source = document.getElementById("source");
 
+const profileImage = document.getElementById("profile");
+
 const prevBtn = document.getElementById("prev");
 const fetchBtn = document.getElementById("fetch");
 
@@ -17,5 +19,5 @@ fetchBtn.addEventListener("click", async () => {
     nameOfAuhter.innerText = data.Quoter;
     quoteboard.innerText = data.Quote;
     source.innerHTML = `<a href="${data.source}">@${data.web_name}</a>`;
-
+    profileImage.src = data.profile_image;
 })

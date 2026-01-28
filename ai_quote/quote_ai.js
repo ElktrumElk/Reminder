@@ -28,8 +28,11 @@ app.post("/quote", async (req, res) => {
             "Quoter": name_of_the_quoter,
             "Quote" : The_quote_of_the_person,
             "source": the_website_url,
-            "web_name": name of the website
+            "web_name": name of the website,
+            "profile_image": mage path from the web of the quoter
           }
+            if the image path of the quoter is not valid then fetch an avata icon image.
+            and please make it a valid path.
             please make it a valid json
             and please only one json format should be return per request.
   `
