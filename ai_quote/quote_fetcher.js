@@ -13,8 +13,10 @@ fetchBtn.addEventListener("click", async () => {
     });
 
     const data = await res.json();
-   nameOfAuhter.innerText = data.Quoter;
-   quoteboard.innerText = data.Quote;
-   source.innerText = data.source;
+    let sourc_name = data.slice(7).split("/", 1);
+
+    nameOfAuhter.innerText = data.Quoter;
+    quoteboard.innerText = data.Quote;
+    source.innerHTML = `<a href="${data.source}">@${sourc_name[0]}</a>`;
 
 })
