@@ -230,7 +230,6 @@ layout.addEventListener("click", (e) => {
 
                         radioBtn.classList.remove("radioCompleted");
                         radioBtn.classList.add("radioComplete");
-
                     }
                 }
                     i = 1;
