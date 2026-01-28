@@ -7,16 +7,15 @@ const fetchBtn = document.getElementById("fetch");
 
 fetchBtn.addEventListener("click", async () => {
 
-    const res = await fetch("http://169.254.32.23:3000/quote", {
+    const res = await fetch("http://172.20.10.2:3000/quote", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
     });
 
     const data = await res.json();
-    let sourc_name = data.slice(7).split("/", 1);
 
     nameOfAuhter.innerText = data.Quoter;
     quoteboard.innerText = data.Quote;
-    source.innerHTML = `<a href="${data.source}">@${sourc_name[0]}</a>`;
+    source.innerHTML = `<a href="${data.source}">@${data.web_name}</a>`;
 
 })

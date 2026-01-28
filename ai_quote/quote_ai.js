@@ -21,15 +21,20 @@ app.post("/quote", async (req, res) => {
     const response = await client.responses.create({
       model: "llama-3.1-8b-instant",
       input: `generate a real quote from a real lengend or professor with the name of the quoter and the website you get it from.
-          return in json format only, no extra words.
+          return in clean json format only, no extra words, no extra intro about what you are about to give.
+          dont't repeat the same quote, but randomise it from different legends and professors.
           format should look like this:
           {
             "Quoter": name_of_the_quoter,
-            "Quote" : The_quote_of_the_person",
-            "source": the_website_url
+            "Quote" : The_quote_of_the_person,
+            "source": the_website_url,
+            "web_name": name of the website
           }
+            please make it a valid json
+            and please only one json format should be return per request.
   `
     });
+    console.log(response.output_text);
     const resp = JSON.parse(response.output_text);
     console.log(resp);
 
