@@ -87,8 +87,22 @@ body {
     margin-inline-start: 2rem;
 }
 
+.cpy {
+    display: flex;
+    gap: .1rem;
+    position: absolute;
+    top: 10rem;
+    right: 1rem;
+    align-self: flex-end;
+    margin-inline-end: 1rem;
+    border: 1px solid var(--orange-border);
+    padding: .2rem .4rem;
+    border-radius: 1rem;
+    flex: 0 0 auto;
+}
 
 .profile_cnt {
+    flex: 0 0 auto;
     width: 90%;
     display: flex;
     gap: .4rem;
