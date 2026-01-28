@@ -19,5 +19,5 @@ fetchBtn.addEventListener("click", async () => {
     nameOfAuhter.innerText = data.Quoter;
     quoteboard.innerText = data.Quote;
     source.innerHTML = `<a href="${data.source}">@${data.web_name}</a>`;
-    profileImage.src = data.profile_image;
+    profileImage.innerText = data.Quoter[0];
 })

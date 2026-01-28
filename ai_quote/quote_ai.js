@@ -20,22 +20,31 @@ app.post("/quote", async (req, res) => {
 
     const response = await client.responses.create({
       model: "llama-3.1-8b-instant",
-      input: `generate a real quote from a real lengend or professor with the name of the quoter and the website you get it from.
-          return in clean json format only, no extra words, no extra intro about what you are about to give.
-          dont't repeat the same quote, but randomise it from different legends and professors.
-          format should look like this:
-          {
-            "Quoter": name_of_the_quoter,
-            "Quote" : The_quote_of_the_person,
-            "source": the_website_url,
-            "web_name": name of the website,
-            "profile_image": mage path from the web of the quoter
-          }
-            if the image path of the quoter is not valid then fetch an avata icon image.
-            and please make it a valid path.
-            please make it a valid json
-            and please only one json format should be return per request.
-  `
+      input: `You are an assistant that ONLY outputs JSON in the following format:
+
+{
+  "Quoter": name_of_the_quoter,
+  "Quote": The_quote_of_the_person,
+  "source": the_website_url,
+  "web_name": name of the website,
+}
+
+Rules:
+1. Do NOT include any text outside of JSON.
+2. Fill every field with real-looking content.
+3. "Quoter" should be a real or believable person.
+4. "Quote" should be a valid short quote attributed to that person.
+5. "source" should be a valid-looking URL where the quote could be found.
+6. "web_name" should match the website of the URL.
+7. Always output proper JSON with double quotes and no trailing commas.
+8. Don't fetch quote you have already fetched.
+9. Don't fetch the same quote from the same person but different quotes.
+
+Generate one example.
+
+  `,
+      temperature: 1,
+      top_p: 0.9
     });
     console.log(response.output_text);
     const resp = JSON.parse(response.output_text);
