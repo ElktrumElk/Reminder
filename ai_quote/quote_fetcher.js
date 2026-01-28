@@ -12,7 +12,7 @@ const copIc = document.getElementById("cpyIc");
 
 fetchBtn.addEventListener("click", async () => {
 
-    const res = await fetch("http://192.168.137.1:3000/quote", {
+    const res = await fetch("https://q77m3nms-3000.uks1.devtunnels.ms/quote", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
     });
