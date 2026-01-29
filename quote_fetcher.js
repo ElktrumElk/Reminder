@@ -2,6 +2,7 @@ const quoteboard = document.getElementById("quote");
 const nameOfAuhter = document.getElementById("name");
 const source = document.getElementById("source");
 
+const profileImage = document.getElementById("profile");
 
 const copyBtn = document.getElementById("cpyBtn")
 const prevBtn = document.getElementById("prev");
