@@ -12,17 +12,15 @@ const copIc = document.getElementById("cpyIc");
 
 fetchBtn.addEventListener("click", async () => {
 
-    const res = await fetch("https://q77m3nms-3000.uks1.devtunnels.ms/quote", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-    });
+    const res = await fetch("https://api.quotable.io/quotes/random");
 
     const data = await res.json();
+    console.log(data)
 
-    nameOfAuhter.innerText = data.Quoter;
-    quoteboard.innerText = data.Quote;
-    source.innerHTML = `<a href="${data.source}">@${data.web_name}</a>`;
-    profileImage.innerText = data.Quoter[0];
+    nameOfAuhter.innerText = data.author;
+    quoteboard.innerText = data.content;
+    source.innerHTML = data.authorSlug;
+    profileImage.innerText = data.author[0];
 })
 
 let isCop = false;
