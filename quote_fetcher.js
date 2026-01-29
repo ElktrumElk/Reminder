@@ -16,7 +16,6 @@ fetchBtn.addEventListener("click", async () => {
     const res = await fetch("https://my-quote-api-ivory.vercel.app/api/quotes/random");
 
     const data = await res.json();
-    console.log(data)
 
     nameOfAuhter.innerText = data.author;
     quoteboard.innerText = data.quote;

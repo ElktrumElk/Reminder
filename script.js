@@ -68,7 +68,7 @@ function displayOptions(e) {
 
             animateOption("flex", 1, true, e);
 
-        }, 300)
+        }, 200)
     }
 }
 

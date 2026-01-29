@@ -195,7 +195,9 @@ body {
     transition: transform .4s ease-out, opacity .4s ease-out;
 
 }
-
+.time_set {
+    margin-inline-start: auto;
+}
 .cards2 {
 
     width: 90%;
