@@ -12,14 +12,14 @@ const copIc = document.getElementById("cpyIc");
 
 fetchBtn.addEventListener("click", async () => {
 
-    const res = await fetch("https://api.quotable.io/quotes/random");
+    const res = await fetch("https://my-quote-api-ivory.vercel.app/api/quotes/random");
 
     const data = await res.json();
     console.log(data)
 
     nameOfAuhter.innerText = data.author;
-    quoteboard.innerText = data.content;
-    source.innerHTML = data.authorSlug;
+    quoteboard.innerText = data.quote;
+    source.innerHTML = data.tags[0];
     profileImage.innerText = data.author[0];
 })
 
