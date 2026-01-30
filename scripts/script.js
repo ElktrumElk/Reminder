@@ -1,4 +1,3 @@
-import renderCard from "./render_card.js";
 import { subGoalCard } from "./render_card.js";
 
 const subGFrame = document.getElementById("subframe");
