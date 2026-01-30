@@ -35,12 +35,12 @@ copyBtn.addEventListener("click", () => {
                 cop.innerText = "Coppied";
                 isCop = true;
                 copIc.width = "30"
-                copIc.src = "./coppied.webp"
+                copIc.src = "/reminder/icons/coppied.webp"
 
                 setTimeout(() => {
 
                     cop.innerText = "Copy"
-                    copIc.src = "./5785292.png"
+                    copIc.src = "/reminder/icons/copy.png"
                     copIc.width = "20"
 
                     isCop = false;
