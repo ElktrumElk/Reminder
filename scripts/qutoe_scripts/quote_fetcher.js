@@ -11,9 +11,31 @@ const fetchBtn = document.getElementById("fetch");
 const cop = document.getElementById("copy");
 const copIc = document.getElementById("cpyIc");
 
+
 fetchBtn.addEventListener("click", async () => {
+    
+    const loader = document.getElementById('load');
+    loader.style.display = "flex";
+    const loaderAnimation = loader.getAnimations()[0];
+
+
+    fetchBtn.disabled = true;
+
+
+    fetchBtn.style.backgroundColor = "gray";
+    fetchBtn.style.borderColor = "gray";
+
+    loaderAnimation.play();
 
     const res = await fetch("https://my-quote-api-ivory.vercel.app/api/quotes/random");
+
+    fetchBtn.disabled = false;
+    fetchBtn.style.backgroundColor = "";
+    fetchBtn.style.borderColor = "";
+
+    loader.style.display = "none";
+    loaderAnimation.cancel();
+
 
     const data = await res.json();
 
