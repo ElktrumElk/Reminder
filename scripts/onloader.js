@@ -9,7 +9,7 @@ window.addEventListener("load", () => {
     for (let i = 0; i < dataLength; i += 1) {
 
         let finalcard = JSON.parse(localStorage.getItem(localStorage.key(i)));
-        let saveRTime = finalcard.time
+        let saveRTime = finalcard.time;
 
         //creating the cards
         renderCard(finalcard.title, finalcard.description, layout, `${finalcard.cardId}`, saveRTime);

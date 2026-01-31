@@ -336,6 +336,7 @@ back.addEventListener("click", () => {
         setTimeout(() => {
 
             subGFrame.style.display = "none";
+            mainApp.style.overflowX = "hidden";
 
         }, 600);
 
