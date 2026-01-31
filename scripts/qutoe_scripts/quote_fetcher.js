@@ -50,7 +50,7 @@ fetchBtn.addEventListener("click", async () => {
 
         if (j == 0) {
            
-            source.innerText = `@${data.tags[0]}, `;
+            source.innerText = `@${data.tags[0]}`;
         
 
         } else if (j == (data.tags.length - 1)) {
@@ -60,8 +60,8 @@ fetchBtn.addEventListener("click", async () => {
         }
         else {
 
-            source.innerText += `@${data.tags[j]}`;
-            console.log("hello")
+            source.innerText += `,  @${data.tags[j]}`;
+    
 
         }
 
