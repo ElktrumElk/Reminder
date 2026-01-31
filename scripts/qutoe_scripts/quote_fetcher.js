@@ -44,14 +44,14 @@ fetchBtn.addEventListener("click", async () => {
     source.innerHTML = "";
 
     for (let j = 0; j < data.tags.length; j++) {
-        
+
 
         if (j == 2) break;
 
         if (j == 0) {
-           
+
             source.innerText = `@${data.tags[0]}`;
-        
+
 
         } else if (j == (data.tags.length - 1)) {
 
@@ -61,7 +61,7 @@ fetchBtn.addEventListener("click", async () => {
         else {
 
             source.innerText += `,  @${data.tags[j]}`;
-    
+
 
         }
 
@@ -84,10 +84,10 @@ copyBtn.addEventListener("click", () => {
                 copIc.width = "30";
                 copIc.src = "../../icons/coppied.webp";
 
-                setTimeout(() => {
+                setTimeout(async () => {
 
-                    cop.innerText = "Copy";
                     copIc.src = "../../icons/copy.png";
+                    cop.innerText = "Copy";
                     copIc.width = "20";
 
                     isCop = false;
