@@ -13,7 +13,7 @@ const copIc = document.getElementById("cpyIc");
 
 
 fetchBtn.addEventListener("click", async () => {
-    
+
     const loader = document.getElementById('load');
     loader.style.display = "flex";
     const loaderAnimation = loader.getAnimations()[0];
@@ -41,7 +41,32 @@ fetchBtn.addEventListener("click", async () => {
 
     nameOfAuhter.innerText = data.author;
     quoteboard.innerText = data.quote;
-    source.innerHTML = data.tags[0];
+    source.innerHTML = "";
+
+    for (let j = 0; j < data.tags.length; j++) {
+        
+
+        if (j == 2) break;
+
+        if (j == 0) {
+           
+            source.innerText = `@${data.tags[0]}, `;
+        
+
+        } else if (j == (data.tags.length - 1)) {
+        
+            source.innerText += `@${data.tags[j]}`;
+
+        }
+        else {
+
+            source.innerText += `@${data.tags[j]}, `;
+            console.log("hello")
+
+        }
+
+    }
+
     profileImage.innerText = data.author[0];
 })
 

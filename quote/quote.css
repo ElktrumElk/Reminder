@@ -71,7 +71,8 @@ body {
 
 .quote_card {
     width: 95%;
-    height: 12rem;
+    height: auto;
+    min-height: 12rem;
     border: none;
     border-bottom: 1px solid var(--orange-border);
     border-radius: 2rem;
@@ -177,7 +178,6 @@ body {
     font-style: italic;
 
 }
-
 
 
 .button_cnt {
