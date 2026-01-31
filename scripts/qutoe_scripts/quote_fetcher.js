@@ -84,7 +84,7 @@ copyBtn.addEventListener("click", () => {
                 copIc.width = "30";
                 copIc.src = "../../icons/coppied.webp";
 
-                setTimeout(async () => {
+               setTimeout(() => {
 
                     copIc.src = "../../icons/copy.png";
                     cop.innerText = "Copy";
